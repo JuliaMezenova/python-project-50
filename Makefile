@@ -25,10 +25,10 @@ lint:
 selfcheck:
 		poetry check
 
-check: 
+#check: 
 		selfcheck test lint
 
-build: 
+#build: 
 		check
 		poetry build
 
