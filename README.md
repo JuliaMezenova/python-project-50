@@ -9,4 +9,4 @@
 # Аскинема с примером работы пакета gendiff (файлы JSON)
 [![asciicast](https://asciinema.org/a/G8I1wtqf6kUkg11D3Gt98n7sQ.svg)]
 # Аскинема с примером работы пакета gendiff (файлы YAML)
-[![asciicast](https://asciinema.org/a/J01plYQw8xzmpDQUXC629cUi6.svg)]
+[![asciicast](https://asciinema.org/a/eNGnLFZYOrwvwhOzeYL8K5QiF)]
