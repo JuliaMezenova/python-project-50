@@ -6,5 +6,7 @@
 # Code Climat status
 [![Maintainability](https://api.codeclimate.com/v1/badges/2b5b874a93ea633d6427/maintainability)](https://codeclimate.com/github/JuliaMezenova/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2b5b874a93ea633d6427/test_coverage)](https://codeclimate.com/github/JuliaMezenova/python-project-50/test_coverage)
-# Аскинема с примером работы пакета gendiff
+# Аскинема с примером работы пакета gendiff (файлы JSON)
 [![asciicast](https://asciinema.org/a/G8I1wtqf6kUkg11D3Gt98n7sQ.svg)]
+# Аскинема с примером работы пакета gendiff (файлы YAML)
+[![asciicast](https://asciinema.org/a/J01plYQw8xzmpDQUXC629cUi6.svg)]
