@@ -10,6 +10,7 @@ packages = [{include = "gendiff"}]
 python = "^3.8.1"
 pytest-cov = "^4.1.0"
 coverage = "7.2.7"
+PyYAML = "^6.0"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff:main"
