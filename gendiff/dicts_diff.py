@@ -1,9 +1,7 @@
-def low_bool_values(value):
+def low_bool_value(value):
     if isinstance(value, bool):
-        result = str(value).lower()
-    else:
-        result = value
-    return result
+        return str(value).lower()
+    return value
 
 
 def dicts_diff(parsed_data1: dict, parsed_data2: dict):
@@ -15,13 +13,13 @@ def dicts_diff(parsed_data1: dict, parsed_data2: dict):
         if key not in parsed_data1:
             different.append({
                 'key': key,
-                'value': low_bool_values(parsed_data2[key]),
+                'value': low_bool_value(parsed_data2[key]),
                 'operation': 'added'
                 })
         elif key not in parsed_data2:
             different.append({
                 'key': key,
-                'value': low_bool_values(parsed_data1[key]),
+                'value': low_bool_value(parsed_data1[key]),
                 'operation': 'deleted'
                 })
         elif isinstance(parsed_data1[key], dict) and isinstance(parsed_data2[key], dict):
@@ -34,18 +32,18 @@ def dicts_diff(parsed_data1: dict, parsed_data2: dict):
         elif parsed_data1[key] != parsed_data2[key]:
             different.append({
                 'key': key,
-                'value': low_bool_values(parsed_data1[key]),
+                'value': low_bool_value(parsed_data1[key]),
                 'operation': 'deleted'
                 })
             different.append({
                 'key': key,
-                'value': low_bool_values(parsed_data2[key]),
+                'value': low_bool_value(parsed_data2[key]),
                 'operation': 'added'
                 })
         elif parsed_data1[key] == parsed_data2[key]:
             different.append({
                 'key': key,
-                'value': parsed_data1[key],
+                'value': low_bool_value(parsed_data1[key]),
                 'operation': 'unchanged'
                 })
         

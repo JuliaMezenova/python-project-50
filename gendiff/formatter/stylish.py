@@ -4,22 +4,20 @@ from typing import Any
 
 SPACES_COUNT = 4
 def stringify(value, depth: int, replacer=' ', operation_symbols='    '):
-    #if isinstance(value, bool):
-    #    return str(value)
-    if value is None:
-        return 'null'
     if isinstance(value, dict):
         lines = []
         for key, val in value.items():
             if isinstance(val, dict):
                 line = f"{replacer * depth}{operation_symbols}{key}: " + '{'
                 lines.append(line)
-                stringify(val, depth + SPACES_COUNT)
-                lines.append(f"{replacer * (depth + SPACES_COUNT)}{operation_symbols}" + '}')
+                lines.append(stringify(val, depth + SPACES_COUNT))
+                lines.append(f"{replacer * (depth + SPACES_COUNT)}" + '}')
             if not isinstance(val, dict):
                 line = f"{replacer * depth}{operation_symbols}{key}: {val}"
                 lines.append(line)
         return '\n'.join(lines)
+    if value is None:
+        return "null"
     return value
         
             
