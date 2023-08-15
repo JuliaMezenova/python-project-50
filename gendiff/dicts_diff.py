@@ -6,10 +6,10 @@ def low_bool_values(value):
     return result
 
 
-def dicts_diff(parsed_data1, parsed_data2):
+def dicts_diff(parsed_data1: dict, parsed_data2: dict):
     different = []
-    sorted_keys = sorted(list(
-        set(parsed_data1.keys()) | set(parsed_data2.keys()))
+    sorted_keys = sorted(
+        list(set(parsed_data1.keys()) | set(parsed_data2.keys()))
         )
     for key in sorted_keys:
         if key not in parsed_data1:
@@ -24,6 +24,13 @@ def dicts_diff(parsed_data1, parsed_data2):
                 'value': low_bool_values(parsed_data1[key]),
                 'operation': 'deleted'
                 })
+        elif isinstance(parsed_data1[key], dict) and isinstance(parsed_data2[key], dict):
+            child = dicts_diff(parsed_data1[key], parsed_data2[key])
+            different.append({
+                'key':key,
+                'value': child,
+                'operation': 'have_children'
+                })
         elif parsed_data1[key] != parsed_data2[key]:
             different.append({
                 'key': key,
@@ -36,16 +43,10 @@ def dicts_diff(parsed_data1, parsed_data2):
                 'operation': 'added'
                 })
         elif parsed_data1[key] == parsed_data2[key]:
-            diff.append({
+            different.append({
                 'key': key,
                 'value': parsed_data1[key],
                 'operation': 'unchanged'
                 })
-        elif isinstance(parsed_data1[key], dict) and isinstance(parsed_data2[key], dict):
-            child = dicts_diff(parsed_data1[key], parsed_data2[key])
-            different.append({
-                'key':key,
-                'value': child,
-                'operation': 'have_children'
-                })
+        
     return different
