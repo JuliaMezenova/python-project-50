@@ -1,8 +1,6 @@
-import itertools
-from typing import Any
-
-
 SPACES_COUNT = 4
+
+
 def stringify(value, depth: int, replacer=' ', operation_symbols='    '):
     if isinstance(value, dict):
         lines = []
@@ -19,8 +17,8 @@ def stringify(value, depth: int, replacer=' ', operation_symbols='    '):
     if value is None:
         return "null"
     return value
-        
-            
+
+
 def formatter_stylish(different, depth=0):
     result = ['{']
     for d in different:
@@ -30,11 +28,17 @@ def formatter_stylish(different, depth=0):
             new_val = formatter_stylish(d.get('value'), depth + SPACES_COUNT)
             result.append(f"{' ' * depth}    {d.get('key')}: {new_val}")
         if d['operation'] == 'added':
-            result.append(stringify(new_d, depth, replacer=' ', operation_symbols='  + '))
+            result.append(
+                stringify(new_d, depth, replacer=' ', operation_symbols='  + ')
+                )
         if d['operation'] == 'deleted':
-            result.append(stringify(new_d, depth, replacer=' ', operation_symbols='  - '))
+            result.append(
+                stringify(new_d, depth, replacer=' ', operation_symbols='  - ')
+                )
         if d['operation'] == 'unchanged':
-            result.append(stringify(new_d, depth, replacer=' ', operation_symbols='    '))
+            result.append(
+                stringify(new_d, depth, replacer=' ', operation_symbols='    ')
+                )
     result.append(f"{' ' * depth}}}")
     return '\n'.join(result)
 
