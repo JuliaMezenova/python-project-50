@@ -10,16 +10,17 @@ def stringify(value, depth: int, replacer=' ', operation_symbols='    '):
                 lines.append(line)
                 lines.append(stringify(val, depth + SPACES_COUNT))
                 lines.append(f"{replacer * (depth + SPACES_COUNT)}" + '}')
-            if not isinstance(val, dict):
+            elif val is None:
+                line = f"{replacer * depth}{operation_symbols}{key}: {'null'}"
+                lines.append(line)
+            elif not isinstance(val, dict) and val is not None:
                 line = f"{replacer * depth}{operation_symbols}{key}: {val}"
                 lines.append(line)
         return '\n'.join(lines)
-    if value is None:
-        return "null"
     return value
 
 
-def formatter_stylish(different, depth=0):
+def formatter_stylish(different, depth=0) -> str:
     result = ['{']
     for d in different:
         new_d = {}
@@ -28,17 +29,11 @@ def formatter_stylish(different, depth=0):
             new_val = formatter_stylish(d.get('value'), depth + SPACES_COUNT)
             result.append(f"{' ' * depth}    {d.get('key')}: {new_val}")
         if d['operation'] == 'added':
-            result.append(
-                stringify(new_d, depth, replacer=' ', operation_symbols='  + ')
-                )
+            result.append(stringify(new_d, depth, operation_symbols='  + '))
         if d['operation'] == 'deleted':
-            result.append(
-                stringify(new_d, depth, replacer=' ', operation_symbols='  - ')
-                )
+            result.append(stringify(new_d, depth, operation_symbols='  - '))
         if d['operation'] == 'unchanged':
-            result.append(
-                stringify(new_d, depth, replacer=' ', operation_symbols='    ')
-                )
+            result.append(stringify(new_d, depth, operation_symbols='    '))
     result.append(f"{' ' * depth}}}")
     return '\n'.join(result)
 

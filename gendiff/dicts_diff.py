@@ -42,7 +42,7 @@ def dicts_diff(parsed_data1, parsed_data2):
                 'value': low_bool_value(parsed_data2[key]),
                 'operation': 'added'
                 })
-        elif parsed_data1[key] == parsed_data2[key]:
+        else:
             different.append({
                 'key': key,
                 'value': low_bool_value(parsed_data1[key]),
