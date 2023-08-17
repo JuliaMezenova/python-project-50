@@ -1,39 +1,55 @@
+from typing import Any
+
+
 SPACES_COUNT = 4
 
 
 def stringify(value, depth: int, replacer=' ', operation_symbols='    '):
+    if value is None:
+        return "null"
     if isinstance(value, dict):
-        lines = []
+        lines = ['{']
         for key, val in value.items():
             if isinstance(val, dict):
-                line = f"{replacer * depth}{operation_symbols}{key}: " + '{'
+                line = (f"{replacer * depth}{operation_symbols}{key}: "
+                        f"{stringify(val, depth + SPACES_COUNT)}")
                 lines.append(line)
-                lines.append(stringify(val, depth + SPACES_COUNT))
-                lines.append(f"{replacer * (depth + SPACES_COUNT)}" + '}')
-            elif val is None:
-                line = f"{replacer * depth}{operation_symbols}{key}: {'null'}"
-                lines.append(line)
-            elif not isinstance(val, dict) and val is not None:
+            else:
                 line = f"{replacer * depth}{operation_symbols}{key}: {val}"
                 lines.append(line)
+        lines.append(f"{replacer * depth}}}")
         return '\n'.join(lines)
     return value
+
+
+def make_line(dictionary: dict, key: Any, depth: int, operation_symbols) -> str:
+    return f"{' ' * depth}{operation_symbols}{dictionary['key']}: " \
+            f"{stringify(dictionary[key], depth + SPACES_COUNT)}"
 
 
 def formatter_stylish(different, depth=0) -> str:
     result = ['{']
     for d in different:
-        new_d = {}
-        new_d[d.get('key')] = d.get('value')
-        if d['operation'] == 'have_children':
-            new_val = formatter_stylish(d.get('value'), depth + SPACES_COUNT)
-            result.append(f"{' ' * depth}    {d.get('key')}: {new_val}")
-        if d['operation'] == 'added':
-            result.append(stringify(new_d, depth, operation_symbols='  + '))
-        if d['operation'] == 'deleted':
-            result.append(stringify(new_d, depth, operation_symbols='  - '))
-        if d['operation'] == 'unchanged':
-            result.append(stringify(new_d, depth, operation_symbols='    '))
+        operation = d['operation']
+        if operation == 'have_children':
+            new_val = formatter_stylish(d['value'], depth + SPACES_COUNT)
+            result.append(f"{' ' * depth}    {d['key']}: {new_val}")
+        if operation == 'removed' or operation == 'updated':
+            result.append(make_line(
+                d, 'old_value', depth, operation_symbols='  - '
+                ))
+        if operation == 'added':
+            result.append(make_line(
+                d, 'new_value', depth, operation_symbols='  + '
+                ))
+        if operation == 'updated':
+            result.append(make_line(
+                d, 'new_value', depth, operation_symbols='  + '
+                ))
+        if operation == 'unchanged':
+            result.append(make_line(
+                d, 'value', depth, operation_symbols='    '
+                ))
     result.append(f"{' ' * depth}}}")
     return '\n'.join(result)
 

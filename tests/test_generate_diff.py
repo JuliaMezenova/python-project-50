@@ -10,3 +10,7 @@ def test_generate_diff():
     assert diff_yaml == open("tests/fixtures/correct_result.txt").read()
     diff_yaml2 = generate_diff("tests/fixtures/file1_tree.yaml", "tests/fixtures/file2_tree.yaml")
     assert diff_yaml2 == open("tests/fixtures/correct_result_tree.txt").read()
+    diff_json2_plain = generate_diff("tests/fixtures/file1_tree.json", "tests/fixtures/file2_tree.json", format_name='plain')
+    assert diff_json2_plain == open("tests/fixtures/correct_result_tree_plain.txt").read()
+    diff_yaml2_plain == generate_diff("tests/fixtures/file1_tree.yaml", "tests/fixtures/file2_tree.yaml", format_name='plain')
+    assert diff_yaml2_plain == open("tests/fixtures/correct_result_tree_plain.txt").read()
