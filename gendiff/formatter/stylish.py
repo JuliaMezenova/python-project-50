@@ -38,11 +38,7 @@ def formatter_stylish(different, depth=0) -> str:
             result.append(make_line(
                 d, 'old_value', depth, operation_symbols='  - '
                 ))
-        if operation == 'added':
-            result.append(make_line(
-                d, 'new_value', depth, operation_symbols='  + '
-                ))
-        if operation == 'updated':
+        if operation == 'added' or operation == 'updated':
             result.append(make_line(
                 d, 'new_value', depth, operation_symbols='  + '
                 ))
