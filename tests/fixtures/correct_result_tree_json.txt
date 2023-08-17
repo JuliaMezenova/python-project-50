@@ -1,0 +1,116 @@
+[
+  {
+    "key": "common",
+    "value": [
+      {
+        "key": "follow",
+        "new_value": "false",
+        "operation": "added"
+      },
+      {
+        "key": "setting1",
+        "value": "Value 1",
+        "operation": "unchanged"
+      },
+      {
+        "key": "setting2",
+        "old_value": 200,
+        "operation": "removed"
+      },
+      {
+        "key": "setting3",
+        "old_value": "true",
+        "new_value": null,
+        "operation": "updated"
+      },
+      {
+        "key": "setting4",
+        "new_value": "blah blah",
+        "operation": "added"
+      },
+      {
+        "key": "setting5",
+        "new_value": {
+          "key5": "value5"
+        },
+        "operation": "added"
+      },
+      {
+        "key": "setting6",
+        "value": [
+          {
+            "key": "doge",
+            "value": [
+              {
+                "key": "wow",
+                "old_value": "",
+                "new_value": "so much",
+                "operation": "updated"
+              }
+            ],
+            "operation": "have_children"
+          },
+          {
+            "key": "key",
+            "value": "value",
+            "operation": "unchanged"
+          },
+          {
+            "key": "ops",
+            "new_value": "vops",
+            "operation": "added"
+          }
+        ],
+        "operation": "have_children"
+      }
+    ],
+    "operation": "have_children"
+  },
+  {
+    "key": "group1",
+    "value": [
+      {
+        "key": "baz",
+        "old_value": "bas",
+        "new_value": "bars",
+        "operation": "updated"
+      },
+      {
+        "key": "foo",
+        "value": "bar",
+        "operation": "unchanged"
+      },
+      {
+        "key": "nest",
+        "old_value": {
+          "key": "value"
+        },
+        "new_value": "str",
+        "operation": "updated"
+      }
+    ],
+    "operation": "have_children"
+  },
+  {
+    "key": "group2",
+    "old_value": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
+      }
+    },
+    "operation": "removed"
+  },
+  {
+    "key": "group3",
+    "new_value": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    },
+    "operation": "added"
+  }
+]

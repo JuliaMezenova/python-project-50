@@ -14,3 +14,5 @@
 [![asciicast](https://asciinema.org/a/Q8Hf7l0RH6NC4TBMr7CFiE5VH.svg)](https://asciinema.org/a/Q8Hf7l0RH6NC4TBMr7CFiE5VH)
 # Аскинема с примером работы пакета gendiff PLAIN
 [![asciicast](https://asciinema.org/a/E86AtrXjMoE7j9bRztdkZtOuI.svg)](https://asciinema.org/a/E86AtrXjMoE7j9bRztdkZtOuI)
+# Аскинема с примером работы пакета gendiff JSON
+[![asciicast](https://asciinema.org/a/XEU74OcEc4P5Zy83qDsCVfgYv.svg)](https://asciinema.org/a/XEU74OcEc4P5Zy83qDsCVfgYv)

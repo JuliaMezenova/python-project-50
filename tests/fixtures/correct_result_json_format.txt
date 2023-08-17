@@ -1,0 +1,28 @@
+[
+  {
+    "key": "follow",
+    "old_value": "false",
+    "operation": "removed"
+  },
+  {
+    "key": "host",
+    "value": "hexlet.io",
+    "operation": "unchanged"
+  },
+  {
+    "key": "proxy",
+    "old_value": "123.234.53.22",
+    "operation": "removed"
+  },
+  {
+    "key": "timeout",
+    "old_value": 50,
+    "new_value": 20,
+    "operation": "updated"
+  },
+  {
+    "key": "verbose",
+    "new_value": "true",
+    "operation": "added"
+  }
+]
