@@ -8,9 +8,7 @@ from gendiff.cli import parse
 def main():
     args = parse()
     print(generate_diff(
-        args.first_file, args.second_file, format_name=args.format
-        )
-    )
+        args.first_file, args.second_file, format_name=args.format))
 
 
 if __name__ == '__main__':
