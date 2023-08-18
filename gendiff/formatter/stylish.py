@@ -24,7 +24,7 @@ def stringify(value, depth: int, replacer=' ', operation_symbols='    '):
 
 def make_line(dictionary: dict, key: Any, depth: int, operation_symbols) -> str:
     return f"{' ' * depth}{operation_symbols}{dictionary['key']}: " \
-            f"{stringify(dictionary[key], depth + SPACES_COUNT)}"
+        f"{stringify(dictionary[key], depth + SPACES_COUNT)}"
 
 
 def formatter_stylish(different, depth=0) -> str:
@@ -37,15 +37,15 @@ def formatter_stylish(different, depth=0) -> str:
         if operation == 'removed' or operation == 'updated':
             result.append(make_line(
                 d, 'old_value', depth, operation_symbols='  - '
-                ))
+            ))
         if operation == 'added' or operation == 'updated':
             result.append(make_line(
                 d, 'new_value', depth, operation_symbols='  + '
-                ))
+            ))
         if operation == 'unchanged':
             result.append(make_line(
                 d, 'value', depth, operation_symbols='    '
-                ))
+            ))
     result.append(f"{' ' * depth}}}")
     return '\n'.join(result)
 
