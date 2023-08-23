@@ -2,6 +2,11 @@ from typing import Any
 
 
 SPACES_COUNT = 4
+ADDED = 'added'
+REMOVED = 'removed'
+HAVE_CHILDREN = 'have_children'
+UNCHANGED = 'unchanged'
+UPDATED = 'updated'
 
 
 def stringify(value, depth: int, replacer=' ', operation_symbols='    '):
@@ -31,18 +36,18 @@ def formatter_stylish(different, depth=0) -> str:
     result = ['{']
     for d in different:
         operation = d['operation']
-        if operation == 'have_children':
+        if operation == HAVE_CHILDREN:
             new_val = formatter_stylish(d['value'], depth + SPACES_COUNT)
             result.append(f"{' ' * depth}    {d['key']}: {new_val}")
-        if operation == 'removed' or operation == 'updated':
+        if operation == REMOVED or operation == UPDATED:
             result.append(make_line(
                 d, 'old_value', depth, operation_symbols='  - '
             ))
-        if operation == 'added' or operation == 'updated':
+        if operation == ADDED or operation == UPDATED:
             result.append(make_line(
                 d, 'new_value', depth, operation_symbols='  + '
             ))
-        if operation == 'unchanged':
+        if operation == UNCHANGED:
             result.append(make_line(
                 d, 'value', depth, operation_symbols='    '
             ))
