@@ -1,12 +1,8 @@
 from typing import Any
+from gendiff.dicts_diff import ADDED, REMOVED, HAVE_CHILDREN, UNCHANGED, UPDATED
 
 
 SPACES_COUNT = 4
-ADDED = 'added'
-REMOVED = 'removed'
-HAVE_CHILDREN = 'have_children'
-UNCHANGED = 'unchanged'
-UPDATED = 'updated'
 
 
 def stringify(value, depth: int, replacer=' ', operation_symbols='    '):

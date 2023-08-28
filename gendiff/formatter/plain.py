@@ -1,3 +1,6 @@
+from gendiff.dicts_diff import ADDED, REMOVED, HAVE_CHILDREN, UPDATED
+
+
 def stringify(value):
     if value is None:
         return "null"
@@ -15,22 +18,22 @@ def output_result(different: dict, path='') -> str:
     result = []
     for d in different:
         path_to_val = f"{path}{d['key']}"
-        if d['operation'] == 'added':
+        if d['operation'] == ADDED:
             line = (f"Property '{path_to_val}' was {d['operation']} with "
                     f"value: {stringify(d['new_value'])}")
             result.append(line)
-        if d['operation'] == 'removed':
+        if d['operation'] == REMOVED:
             line = f"Property '{path_to_val}' was removed"
             result.append(line)
-        if d['operation'] == 'updated':
+        if d['operation'] == UPDATED:
             line = (f"Property '{path_to_val}' was updated. "
                     f"From {stringify(d['old_value'])} to "
                     f"{stringify(d['new_value'])}")
             result.append(line)
-        if d['operation'] == 'have_children':
+        if d['operation'] == HAVE_CHILDREN:
             line = output_result(d['value'], f"{path_to_val}.")
             result.append(f"{line}")
-        else:  # if d['operation'] == 'unchanged'
+        else:  # if d['operation'] == UNCHANGED
             pass
     return '\n'.join(result)
 
