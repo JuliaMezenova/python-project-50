@@ -3,7 +3,9 @@ import json
 
 
 def parse_data(data: str, data_format: str) -> dict:
-    if data_format == 'yaml':
-        return yaml.safe_load(data)
-    if data_format == 'json':
-        return json.loads(data)
+    parsers = {
+        "yaml": yaml.safe_load,
+        "yml": yaml.safe_load,
+        "json": json.loads
+    }
+    return parsers[data_format](data)
